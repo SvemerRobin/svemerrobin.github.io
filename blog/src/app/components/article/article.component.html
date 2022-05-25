@@ -1,0 +1,52 @@
+<article>
+    <h1>{{ article.title }}</h1>
+    <div class="article-info">
+      <p>{{ article.tag }}</p>
+      <p class="dot">&#8226;</p>
+      <p>
+        Added by
+        <span class="article-author">{{ article.author }}</span>
+      </p>
+      <p class="dot">&#8226;</p>
+      <p>{{ article.date }}</p>
+    </div>
+    <div class="article-modify">
+      <button class="btn-edit">Edit</button>
+      <span>&#124;</span>
+      <button class="btn-edit">Delete</button>
+    </div>
+    <div class="article-img">
+      <img [src]="article.image_url" alt="image displayed" />
+    </div>
+    <div *ngIf="article.content.length === 1000">
+      <div class="article-paragraph">
+        <p>{{ article.content }}</p>
+      </div>
+    </div>
+    <div *ngIf="article.content.length > 1000">
+      <div class="article-paragraph">
+        <p>
+          {{
+            article.content
+              .split(".")
+              .slice(0, article.content.split(".").length / 2)
+              .join(".")
+          }}
+        </p>
+      </div>
+      <div>{{article.saying}}</div>
+      <div class="article-paragraph">
+        <p>
+          {{
+            article.content
+              .split(".")
+              .slice(article.content.split(".").length / 2)
+              .join(".")
+          }}
+        </p>
+      </div>
+    </div>
+  </article>
+  <div *ngIf="article.content.length === 1000">
+    <button>Read more</button>
+  </div>
